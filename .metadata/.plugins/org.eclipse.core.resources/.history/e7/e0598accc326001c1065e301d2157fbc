@@ -32,12 +32,11 @@ public class GestorCriticas {
 			nuevo.setApellidos(apellidos);
 			nuevo.setCorreo(correo);
 			nuevo.setNick(nick);
-			listaUsuarios.add(nuevo);
 		}
 	
 		public boolean eliminarUsuario(String correo) {
 			for(int i = 0; i < listaUsuarios.size(); i++){
-				if(listaUsuarios.get(i).getCorreo().equals(correo)){
+				if(listaUsuarios.get(i).getCorreo() == correo){
 					listaUsuarios.remove(i);
 					return true;
 				}
@@ -52,7 +51,7 @@ public class GestorCriticas {
 		public Usuario verDatos(String correo) {
 			Usuario datos = new Usuario();
 			for(int i = 0; i < listaUsuarios.size(); i++){
-				if(listaUsuarios.get(i).getCorreo().equals(correo)){
+				if(listaUsuarios.get(i).getCorreo() == correo){
 					datos = listaUsuarios.get(i);
 					return datos;
 				}
@@ -61,7 +60,7 @@ public class GestorCriticas {
 		}
 	
 	//Funciones del gestor de criticas
-	public void crearCritica(String titulo, String resenia,String nick) {
+	public void crearCritica(String titulo, String resenia,int puntua) {
 		Critica nuevaCritica = new Critica();
 		
 		
@@ -75,7 +74,7 @@ public class GestorCriticas {
 		
 		//System.out.println("Puntuacion del espectaculo: ");
 		//int puntuar = scan.nextInt();
-		nuevaCritica.setNick(nick);
+		nuevaCritica.setPuntuacion(puntua);
 		
 		listaCritica.add(nuevaCritica);
 		
@@ -84,53 +83,38 @@ public class GestorCriticas {
 	
 	
 	//Hay que cambiarlo
-	public ArrayList<String> verCriticas() {
-		ArrayList<Integer> auxiliar = new ArrayList<Integer>();
-		ArrayList<String> stringcriticas = new ArrayList<String>();
-		String insertador;
-		int media = 0;
-		int contador = 0;
+	public void verCriticas() {
 		
+		if(listaCritica.size() == 0) {
+			System.out.println("No hay ninguna critica disponible");
+		}
+		else {
 			for(int i = 0; i < listaCritica.size(); i++) {
-				auxiliar = listaCritica.get(i).getValoracion();
-				for(int j = 0;j < auxiliar.size();j++) {
-					media = media + auxiliar.get(i);
-					contador++;
-				}
-				media = media/contador;
-				insertador = "Titulo: " + listaCritica.get(i).getTitulo() + 
-						", Nick: "+ listaCritica.get(i).getNick() +", Reseña: " 
-						+ listaCritica.get(i).getResenia() + ", Valoracion: " + media;
-				stringcriticas.add(insertador);
-			}
-			return stringcriticas;
-	}
-		
-	
-	//Borrar la critica en funcion del titulo
-	public boolean borrarCritica(String usernick, String titulobuscado) {
-		for(int i = 0; i < listaCritica.size(); i++) {
-			if(listaCritica.get(i).getTitulo().equals(titulobuscado) && listaCritica.get(i).getNick().equals(usernick)) {
-				listaCritica.remove(i);
-				return true;
+				System.out.println("Titulo: " + listaCritica.get(i).getTitulo());
+				System.out.println("Reseña: " + listaCritica.get(i).getResenia());
+				System.out.println("Puntuacion: " + listaCritica.get(i).getPuntuacion());				
 			}
 		}
-		return false;
+	}
+	//Borrar la critica en funcion del titulo
+	public int borrarCritica(String usernick, String titulobuscado) {
+		int aux = 0;
+		for(int i = 0; i < listaCritica.size(); i++) {
+			if(listaCritica.get(i).getTitulo() == titulobuscado && listaCritica.get(i).getNick() == usernick) {
+				listaCritica.remove(i);
+				aux = 1;
+			}
+		}
+		return aux;
 	}
 	//Hay que hablarlo
-	public boolean votarCritica(String titulo,String nickvotante,int valoracionnueva) {
-		for(int i = 0; i < listaCritica.size(); i++) {
-			if(listaCritica.get(i).getTitulo().equals(titulo) && listaCritica.get(i).getNick().equals(nickvotante)){
-				listaCritica.get(i).setValoracion(valoracionnueva);
-				return true;
-			}
-		}
-		return false;
+	public void votarCritica(String titulo,String nickvotante) {
+		
 	}
 	public ArrayList<Critica> buscarCriticas(String nickcreador) {
 		ArrayList<Critica> lista_criticasbuscadas = new ArrayList<Critica>();
 		for(int i = 0; i < listaCritica.size(); i++) {
-			if(listaCritica.get(i).getNick().equals(nickcreador)) {
+			if(listaCritica.get(i).getNick() == nickcreador) {
 				lista_criticasbuscadas.add(listaCritica.get(i));
 			}
 		}

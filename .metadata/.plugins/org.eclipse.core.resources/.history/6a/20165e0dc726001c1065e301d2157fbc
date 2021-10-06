@@ -118,13 +118,7 @@ public class GestorCriticas {
 		return false;
 	}
 	//Hay que hablarlo
-	public boolean votarCritica(String titulo,String nickvotante,int valoracionnueva) {
-		for(int i = 0; i < listaCritica.size(); i++) {
-			if(listaCritica.get(i).getTitulo().equals(titulo) && listaCritica.get(i).getNick().equals(nickvotante)){
-				listaCritica.get(i).setValoracion(valoracionnueva);
-				return true;
-			}
-		}
+	public boolean votarCritica(String titulo,String nickvotante) {
 		return false;
 	}
 	public ArrayList<Critica> buscarCriticas(String nickcreador) {

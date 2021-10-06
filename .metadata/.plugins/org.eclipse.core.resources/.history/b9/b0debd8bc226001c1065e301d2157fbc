@@ -7,7 +7,7 @@ import java.util.ArrayList;
 */
 public class Critica {
 	private String titulo,resenia,nick;
-	private ArrayList<Integer> valoraciones = new ArrayList<Integer>();
+	private ArrayList<Integer> valoraciones;
 	
 	
 	public Critica() {
@@ -28,6 +28,9 @@ public class Critica {
 	public String getNick() {
 		return this.nick;
 	}
+	public int getPuntuacion() {
+		return this.puntuacion;
+	}
 	
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
@@ -37,10 +40,10 @@ public class Critica {
 		this.resenia = resenia;
 	}
 	
+	public void setPuntuacion(int puntuacion) {
+		this.puntuacion = puntuacion;
+	}
 	public void setNick(String nick) {
 		this.nick = nick;
-	}
-	public void setValoracion(int valoracion) {
-		this.valoraciones.add(valoracion);
 	}
 }
