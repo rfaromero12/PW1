@@ -1,0 +1,15 @@
+19:37:11 **** Incremental Build of configuration Debug for project equipo29 ****
+make all 
+Building file: ../Andamio/el_hijo_del_andamio.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Andamio/el_hijo_del_andamio.d" -MT"Andamio/el_hijo_del_andamio.o" -o "Andamio/el_hijo_del_andamio.o" "../Andamio/el_hijo_del_andamio.cpp"
+Finished building: ../Andamio/el_hijo_del_andamio.cpp
+ 
+Building target: equipo29
+Invoking: GCC C++ Linker
+g++  -o "equipo29"  ./Andamio/el_hijo_del_andamio.o   
+Finished building target: equipo29
+ 
+
+19:37:12 Build Finished. 0 errors, 0 warnings. (took 1s.117ms)
+

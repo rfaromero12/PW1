@@ -1,0 +1,47 @@
+19:35:31 **** Build of configuration Debug for project equipo29 ****
+make all 
+Building file: ../Andamio/el_hijo_del_andamio.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Andamio/el_hijo_del_andamio.d" -MT"Andamio/el_hijo_del_andamio.o" -o "Andamio/el_hijo_del_andamio.o" "../Andamio/el_hijo_del_andamio.cpp"
+Finished building: ../Andamio/el_hijo_del_andamio.cpp
+ 
+Building target: equipo29
+Invoking: GCC C++ Linker
+g++  -o "equipo29"  ./Andamio/el_hijo_del_andamio.o   
+/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x24): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:47: equipo29] Error 1
+"make all" terminated with exit code 2. Build might be incomplete.
+19:36:06 **** Incremental Build of configuration Debug for project equipo29 ****
+make all 
+Building target: equipo29
+Invoking: GCC C++ Linker
+g++  -o "equipo29"  ./Andamio/el_hijo_del_andamio.o   
+/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x24): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:47: equipo29] Error 1
+"make all" terminated with exit code 2. Build might be incomplete.
+19:36:57 **** Incremental Build of configuration Debug for project equipo29 ****
+make all 
+Building target: equipo29
+Invoking: GCC C++ Linker
+g++  -o "equipo29"  ./Andamio/el_hijo_del_andamio.o   
+/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x24): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:47: equipo29] Error 1
+"make all" terminated with exit code 2. Build might be incomplete.
+19:37:11 **** Incremental Build of configuration Debug for project equipo29 ****
+make all 
+Building file: ../Andamio/el_hijo_del_andamio.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Andamio/el_hijo_del_andamio.d" -MT"Andamio/el_hijo_del_andamio.o" -o "Andamio/el_hijo_del_andamio.o" "../Andamio/el_hijo_del_andamio.cpp"
+Finished building: ../Andamio/el_hijo_del_andamio.cpp
+ 
+Building target: equipo29
+Invoking: GCC C++ Linker
+g++  -o "equipo29"  ./Andamio/el_hijo_del_andamio.o   
+Finished building target: equipo29
+ 
