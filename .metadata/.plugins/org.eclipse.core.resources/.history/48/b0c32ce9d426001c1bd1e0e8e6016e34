@@ -172,16 +172,14 @@ public void load() {
 	            	
 	            	String mail = br.readLine();
 	            	String name = br.readLine();
-	            	String surname = br.readLine();
 	            	String password = br.readLine();
+	            	int admin = Integer.parseInt(br.readLine());
 	            	br.readLine();
 	            	
 	            	Usuario u = new Usuario();
 	            	u.setNick(username);
-	            	u.setApellidos(surname);
-	            	u.setNombre(name);
-	            	u.setCorreo(mail);
-	            	u.setPassword(password);
+	            	u.setApellidos(name);
+	            	
 	            	listaUsuarios.add(u);
 	            }
 	        }
@@ -194,6 +192,6 @@ public void load() {
 	}
 	
 }
-
+}
 
 

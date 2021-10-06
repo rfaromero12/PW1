@@ -1,6 +1,5 @@
 package ejercicio1operaciones;
 	
-import java.io.*;
 import java.util.ArrayList;
 import ejercicio1datos.Critica;
 import ejercicio1datos.Usuario;
@@ -138,62 +137,4 @@ public class GestorCriticas {
 		}
 		return lista_criticasbuscadas;
 	}
-
-	public void save() {
-	
-		try {
-       
-			FileWriter usersFile = new FileWriter("users.txt");
-        
-			for (int i = 0; i < listaUsuarios.size(); i++) {
-        	usersFile.write(listaUsuarios.get(i).getNick() + "\n");
-        	usersFile.write(listaUsuarios.get(i).getCorreo() + "\n");
-        	usersFile.write(listaUsuarios.get(i).getNombre() + "\n");
-        	usersFile.write(listaUsuarios.get(i).getApellidos() + "\n");
-        	usersFile.write(listaUsuarios.get(i).getPassword() + "\n");
-        }
-        
-        usersFile.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-public void load() {
-		
-		File usersFile = new File("users.txt");
-		
-		if(usersFile.exists()) {
-			
-			try(BufferedReader br = new BufferedReader(new FileReader("users.txt"))) 
-	        {
-	        	String username;
-	            while ((username = br.readLine()) != null) {
-	            	
-	            	String mail = br.readLine();
-	            	String name = br.readLine();
-	            	String surname = br.readLine();
-	            	String password = br.readLine();
-	            	br.readLine();
-	            	
-	            	Usuario u = new Usuario();
-	            	u.setNick(username);
-	            	u.setApellidos(surname);
-	            	u.setNombre(name);
-	            	u.setCorreo(mail);
-	            	u.setPassword(password);
-	            	listaUsuarios.add(u);
-	            }
-	        }
-	        catch (IOException e) {
-	            System.out.println("An error occurred.");
-	            e.printStackTrace();
-	        }     	
-			
-		}
-	}
-	
 }
-
-
-
