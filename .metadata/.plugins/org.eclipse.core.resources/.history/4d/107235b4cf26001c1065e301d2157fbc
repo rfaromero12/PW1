@@ -26,13 +26,12 @@ public class GestorCriticas {
 	}
 	
 	//Funciones de usuario
-		public void crearUsuario(String correo,String nombre, String apellidos, String nick,String password) {
+		public void crearUsuario(String correo,String nombre, String apellidos, String nick) {
 			Usuario nuevo = new Usuario();
 			nuevo.setNombre(nombre);
 			nuevo.setApellidos(apellidos);
 			nuevo.setCorreo(correo);
 			nuevo.setNick(nick);
-			nuevo.setPassword(password);
 			listaUsuarios.add(nuevo);
 		}
 	
