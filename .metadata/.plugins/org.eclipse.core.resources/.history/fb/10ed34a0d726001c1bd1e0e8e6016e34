@@ -5,7 +5,7 @@ public class Main {
 		//int opcion;
 		System.out.println("Bienvenido a la aplicacion. ¿Qué desea hacer?");
 		System.out.println("Iniciar sesion(1) | Registrarse(2)");
-		//sdsdsdsd
+		
 		
 	}
 }
