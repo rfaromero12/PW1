@@ -6,6 +6,7 @@ import ejercicio1datos.Critica;
 import ejercicio1datos.Usuario;
 
 
+
 public class GestorCriticas {
 
 	private static GestorCriticas instance = null;

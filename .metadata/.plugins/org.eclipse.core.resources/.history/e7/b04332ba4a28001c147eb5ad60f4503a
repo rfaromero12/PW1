@@ -1,6 +1,8 @@
 package ejercicio1main;
 
 import java.util.Scanner;
+import ejercicio1datos.Critica;
+import ejercicio1datos.Usuario;
 import ejercicio1operaciones.GestorCriticas;
 
 

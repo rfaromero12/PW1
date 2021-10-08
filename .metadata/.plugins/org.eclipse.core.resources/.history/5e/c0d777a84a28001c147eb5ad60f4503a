@@ -1,6 +1,10 @@
 package ejercicio1main;
 
 import java.util.Scanner;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import ejercicio1datos.Critica;
+import ejercicio1datos.Usuario;
 import ejercicio1operaciones.GestorCriticas;
 
 
