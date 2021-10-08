@@ -26,49 +26,8 @@ public class GestorCriticas {
 		return instance;
 	}
 	
-	
 	//Funciones de usuario
-	public int login(String user, String password) {
-		
-		for(int i=0; i < listaUsuarios.size(); i++) {
-			
-			if((listaUsuarios.get(i).getNick().equals(user)) && (listaUsuarios.get(i).getPassword().equals(password))) {
-				
-				
-					return 1;
-				}
-			}
-		return 0;
-	}
-	
-	public int verifyMail(String mail) {
-		
-		for (int i = 0; i < listaUsuarios.size(); i++) {
-			
-			if(listaUsuarios.get(i).getCorreo().equals(mail)) {
-			
-				return 0;
-				
-			}
-		}
-		
-		return 1;
-	}
-	public int verifyUser(String username) {
-		
-		for (int i = 0; i < listaUsuarios.size(); i++) {
-			
-			if(listaUsuarios.get(i).getNick().equals(username)) {
-			
-				return 0;
-				
-			}
-		}
-		
-		return 1;
-	}
-	
-		public int crearUsuario(String correo,String nombre, String apellidos, String nick,String password) {
+		public void crearUsuario(String correo,String nombre, String apellidos, String nick,String password) {
 			Usuario nuevo = new Usuario();
 			nuevo.setNombre(nombre);
 			nuevo.setApellidos(apellidos);
@@ -76,7 +35,6 @@ public class GestorCriticas {
 			nuevo.setNick(nick);
 			nuevo.setPassword(password);
 			listaUsuarios.add(nuevo);
-			return 1;
 		}
 	
 		public boolean eliminarUsuario(String correo) {
@@ -105,17 +63,24 @@ public class GestorCriticas {
 		}
 	
 	//Funciones del gestor de criticas
-	public boolean crearCritica(String titulo, String resenia,String nick) {
+	public void crearCritica(String titulo, String resenia,String nick) {
 		Critica nuevaCritica = new Critica();
 		
+		
+		//System.out.println("Titulo del espectaculo: ");
+		//String titulo = scan.next();
 		nuevaCritica.setTitulo(titulo);
 		
+		//System.out.println("Reseña del espectaculo: ");
+		//String resenia = scan.next();
 		nuevaCritica.setResenia(resenia);
 		
+		//System.out.println("Puntuacion del espectaculo: ");
+		//int puntuar = scan.nextInt();
 		nuevaCritica.setNick(nick);
 		
 		listaCritica.add(nuevaCritica);
-		return true;
+		
 		//El array de las valoraciones no se si iniciarlo
 	}
 	

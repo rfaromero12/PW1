@@ -165,7 +165,7 @@ public class Main {
 					System.out.println("Introduzca su usuario");
 					username = read.next();
 					
-					System.out.println("Introduzca la puntuacion del espectaculo");
+					
 					int valoracion = read.nextInt();
 					
 					CManager.votarCritica(titulo, username.toLowerCase(), valoracion);

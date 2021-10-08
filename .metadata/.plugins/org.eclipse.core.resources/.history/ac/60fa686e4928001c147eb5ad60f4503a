@@ -126,11 +126,9 @@ public class Main {
 					System.out.println("Introduzca el titulo de la crítica");
 					titulo = read.next();
 					
-					System.out.println("Introduzca la reseña de la crítica");
+					System.out.println("Introduzca el titulo de la crítica");
 					String resenia = read.next();
 					
-					System.out.println("Introduzca su usuario");
-					username = read.next();
 					
 					CManager.crearCritica(titulo, resenia, username.toLowerCase());
 				
@@ -142,8 +140,6 @@ public class Main {
 					
 					System.out.println("Introduzca el titulo de la crítica");
 					titulo = read.next();
-					System.out.println("Introduzca su usuario");
-					username = read.next();
 					
 					CManager.borrarCritica(username.toLowerCase(), titulo);
 					
@@ -162,10 +158,7 @@ public class Main {
 					
 					System.out.println("Introduzca el titulo de la crítica");
 					titulo = read.next();
-					System.out.println("Introduzca su usuario");
-					username = read.next();
 					
-					System.out.println("Introduzca la puntuacion del espectaculo");
 					int valoracion = read.nextInt();
 					
 					CManager.votarCritica(titulo, username.toLowerCase(), valoracion);

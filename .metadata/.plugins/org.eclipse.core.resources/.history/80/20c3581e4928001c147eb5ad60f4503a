@@ -68,7 +68,7 @@ public class GestorCriticas {
 		return 1;
 	}
 	
-		public int crearUsuario(String correo,String nombre, String apellidos, String nick,String password) {
+		public boolean crearUsuario(String correo,String nombre, String apellidos, String nick,String password) {
 			Usuario nuevo = new Usuario();
 			nuevo.setNombre(nombre);
 			nuevo.setApellidos(apellidos);
@@ -76,7 +76,7 @@ public class GestorCriticas {
 			nuevo.setNick(nick);
 			nuevo.setPassword(password);
 			listaUsuarios.add(nuevo);
-			return 1;
+			return true;
 		}
 	
 		public boolean eliminarUsuario(String correo) {
