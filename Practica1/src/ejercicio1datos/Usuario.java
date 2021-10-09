@@ -1,11 +1,15 @@
 package ejercicio1datos;
 
-/*
- Hablar sobre como hacer que solo se pueda poner un unico correo
-*/
+/**
+ * 
+ * @author rfaromero12
+ *
+ */
 public class Usuario {
-	private String nombre,apellidos,nick;
-	private String correo,password;
+	private String nombre;
+	private String nick;
+	private String correo;
+	private String password;
 	
 	public Usuario() {
 		
@@ -18,11 +22,7 @@ public class Usuario {
 	public String getNombre() {
 		return this.nombre;
 	}
-	
-	public String getApellidos() {
-		return this.apellidos;
-	}
-	
+
 	public String getNick() {
 		return this.nick;
 	}
@@ -38,10 +38,6 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	public void setApellidos(String apellidos){
-		this.apellidos = apellidos;
-	}
-	
 	public void setNick(String nick){
 		this.nick = nick;
 	}

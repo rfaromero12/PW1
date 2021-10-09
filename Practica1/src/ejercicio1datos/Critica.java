@@ -1,10 +1,12 @@
 package ejercicio1datos;
 
 import java.util.ArrayList;
-/*
-	Las valoraciones podrian ser una lista de valoraciones, ya que cada usuario puede realizar una.
-	
-*/
+
+/**
+ * 
+ * @author rfaromero12
+ *
+ */
 public class Critica {
 	private String titulo,resenia,nick;
 	private ArrayList<Integer> valoraciones = new ArrayList<Integer>();

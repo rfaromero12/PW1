@@ -27,6 +27,7 @@ public class GestorCriticas {
 	
 	
 	//Funciones de usuario
+	//Funciona
 	public int login(String user, String password) {
 		
 		for(int i=0; i < listaUsuarios.size(); i++) {
@@ -39,9 +40,8 @@ public class GestorCriticas {
 			}
 		return 0;
 	}
-	
+	//Funciona
 	public int verifyMail(String mail) {
-		
 		for (int i = 0; i < listaUsuarios.size(); i++) {
 			
 			if(listaUsuarios.get(i).getCorreo().equals(mail)) {
@@ -53,31 +53,32 @@ public class GestorCriticas {
 		
 		return 1;
 	}
+	//Funciona
 	public int verifyUser(String username) {
 		
+		int key = 1;
 		for (int i = 0; i < listaUsuarios.size(); i++) {
 			
 			if(listaUsuarios.get(i).getNick().equals(username)) {
 			
-				return 0;
+				key = 0;
 				
 			}
 		}
 		
-		return 1;
+		return key;
 	}
-	
-		public int crearUsuario(String correo,String nombre, String apellidos, String nick,String password) {
+		//funciona
+		public int crearUsuario(String correo,String nombre, String nick,String password) {
 			Usuario nuevo = new Usuario();
 			nuevo.setNombre(nombre);
-			nuevo.setApellidos(apellidos);
 			nuevo.setCorreo(correo);
 			nuevo.setNick(nick);
 			nuevo.setPassword(password);
 			listaUsuarios.add(nuevo);
 			return 1;
 		}
-	
+		//funciona
 		public boolean eliminarUsuario(String correo) {
 			for(int i = 0; i < listaUsuarios.size(); i++){
 				if(listaUsuarios.get(i).getCorreo().equals(correo)){
@@ -88,23 +89,33 @@ public class GestorCriticas {
 			return false;
 		}
 	
-		public void actualizarDatos() {
-			
+		public void actualizarDatos(String oldnick,String newnick, String newNombre, String newPassword) {
+			for(int i = 0; i < listaUsuarios.size(); i++) {
+				if(listaUsuarios.get(i).getNick().equals(oldnick)) {
+					listaUsuarios.get(i).setNick(newnick);
+					listaUsuarios.get(i).setNombre(newNombre);
+					listaUsuarios.get(i).setPassword(newPassword);
+					save();
+				}
+			}
 		}
-	
-		public Usuario verDatos(String correo) {
-			Usuario datos = new Usuario();
+		//Funciona pero hablar si hacerlo con correo o dejarlo como usuario
+		public String verDatos(String username) {
+			String datos = "";
 			for(int i = 0; i < listaUsuarios.size(); i++){
-				if(listaUsuarios.get(i).getCorreo().equals(correo)){
-					datos = listaUsuarios.get(i);
-					return datos;
+				if(listaUsuarios.get(i).getNick().equals(username)){
+					datos = "Nick: " + listaUsuarios.get(i).getNick() + ", Nombre: " 
+							+ listaUsuarios.get(i).getNombre() + ", Correo: " 
+							+ listaUsuarios.get(i).getCorreo() + ", Password: "+ listaUsuarios.get(i).getPassword();
 				}
 			}	
-			return null;
+			return datos;
 		}
 	
 	//Funciones del gestor de criticas
-	public boolean crearCritica(String titulo, String resenia,String nick) {
+	//Funciona
+	
+	public void crearCritica(String titulo, String resenia,String nick) {
 		Critica nuevaCritica = new Critica();
 		
 		nuevaCritica.setTitulo(titulo);
@@ -114,36 +125,42 @@ public class GestorCriticas {
 		nuevaCritica.setNick(nick);
 		
 		listaCritica.add(nuevaCritica);
-		return true;
-		//El array de las valoraciones no se si iniciarlo
+	
 	}
 	
-	
-	//Hay que cambiarlo
+	//Funciona, correguir error cuando critica acaba de ser creada y no tiene votaciones
 	public ArrayList<String> verCriticas() {
 		ArrayList<Integer> auxiliar = new ArrayList<Integer>();
 		ArrayList<String> stringcriticas = new ArrayList<String>();
 		String insertador;
-		int media = 0;
-		int contador = 0;
+		float media = 0;
+		float contador = 0;
 		
 			for(int i = 0; i < listaCritica.size(); i++) {
 				auxiliar = listaCritica.get(i).getValoracion();
 				for(int j = 0;j < auxiliar.size();j++) {
-					media = media + auxiliar.get(i);
+					media = media + auxiliar.get(j);
 					contador++;
 				}
+				try {
 				media = media/contador;
+				}
+				catch(Exception e) {
+					System.out.println("Nadie ha puntuado la critica");
+				}
 				insertador = "Titulo: " + listaCritica.get(i).getTitulo() + 
 						", Nick: "+ listaCritica.get(i).getNick() +", Reseña: " 
 						+ listaCritica.get(i).getResenia() + ", Valoracion: " + media;
 				stringcriticas.add(insertador);
+				media = 0;
+				contador = 0;
 			}
 			return stringcriticas;
 	}
 		
 	
 	//Borrar la critica en funcion del titulo
+	//Funciona
 	public boolean borrarCritica(String usernick, String titulobuscado) {
 		for(int i = 0; i < listaCritica.size(); i++) {
 			if(listaCritica.get(i).getTitulo().equals(titulobuscado) && listaCritica.get(i).getNick().equals(usernick)) {
@@ -153,16 +170,17 @@ public class GestorCriticas {
 		}
 		return false;
 	}
-	//Hay que hablarlo
+	//Funciona
 	public boolean votarCritica(String titulo,String nickvotante,int valoracionnueva) {
 		for(int i = 0; i < listaCritica.size(); i++) {
-			if(listaCritica.get(i).getTitulo().equals(titulo) && listaCritica.get(i).getNick().equals(nickvotante)){
+			if(listaCritica.get(i).getTitulo().equals(titulo) && !listaCritica.get(i).getNick().equals(nickvotante)){
 				listaCritica.get(i).setValoracion(valoracionnueva);
 				return true;
 			}
 		}
 		return false;
 	}
+	//Funciona
 	public ArrayList<Critica> buscarCriticas(String nickcreador) {
 		ArrayList<Critica> lista_criticasbuscadas = new ArrayList<Critica>();
 		for(int i = 0; i < listaCritica.size(); i++) {
@@ -172,7 +190,7 @@ public class GestorCriticas {
 		}
 		return lista_criticasbuscadas;
 	}
-
+	//Funciona
 	public void save() {
 	
 		try {
@@ -183,7 +201,6 @@ public class GestorCriticas {
         	usersFile.write(listaUsuarios.get(i).getNick() + "\n");
         	usersFile.write(listaUsuarios.get(i).getCorreo() + "\n");
         	usersFile.write(listaUsuarios.get(i).getNombre() + "\n");
-        	usersFile.write(listaUsuarios.get(i).getApellidos() + "\n");
         	usersFile.write(listaUsuarios.get(i).getPassword() + "\n");
         }
         
@@ -192,8 +209,30 @@ public class GestorCriticas {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		try {
+		       
+			FileWriter criticasFile = new FileWriter("criticas.txt");
+			ArrayList<Integer> aux = new ArrayList<Integer>();
+			for (int i = 0; i < listaCritica.size(); i++) {
+        	criticasFile.write(listaCritica.get(i).getTitulo() + "\n");
+        	criticasFile.write(listaCritica.get(i).getResenia() + "\n");
+        	criticasFile.write(listaCritica.get(i).getNick() + "\n");
+        	aux = listaCritica.get(i).getValoracion();
+        	for(int j = 0; j < aux.size(); j++) {
+        	criticasFile.write(aux.get(j) + " ");
+        	}
+        	criticasFile.write("\n");
+        }
+        
+       criticasFile.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-public void load() {
+	//Funciona
+	public void load() {
 		
 		File usersFile = new File("users.txt");
 		
@@ -206,13 +245,10 @@ public void load() {
 	            	
 	            	String mail = br.readLine();
 	            	String name = br.readLine();
-	            	String surname = br.readLine();
 	            	String password = br.readLine();
-	            	br.readLine();
 	            	
 	            	Usuario u = new Usuario();
 	            	u.setNick(username);
-	            	u.setApellidos(surname);
 	            	u.setNombre(name);
 	            	u.setCorreo(mail);
 	            	u.setPassword(password);
@@ -222,11 +258,42 @@ public void load() {
 	        catch (IOException e) {
 	            System.out.println("An error occurred.");
 	            e.printStackTrace();
-	        }     	
-			
+	        }
 		}
-	}
+			
+		
+		File criticasFile = new File("criticas.txt");
+		
+		if(criticasFile.exists()) {
+			
+			try(BufferedReader br = new BufferedReader(new FileReader("criticas.txt"))) 
+	        {
+	        	String titulo;
+	            while ((titulo = br.readLine()) != null) {
+	            	Critica aux = new Critica();
+	            	String resenia = br.readLine();
+	            	String nick = br.readLine();  
+	            	String puntuaciones = br.readLine();
+	            	String [] parts = puntuaciones.split(" ");
+	            	
+	            	for(int i = 0; i < parts.length; i++) {
+	            		aux.setValoracion(Integer.parseInt(parts[i]));
+	            	}
+	            
+	            	aux.setNick(nick);
+	            	aux.setResenia(resenia);
+	            	aux.setTitulo(titulo);
+	            	listaCritica.add(aux);
+	            }
+	        }
+	        catch (IOException e) {
+	            System.out.println("An error occurred.");
+	            e.printStackTrace();
+	        }     			
+		}
+		
 	
+	}
 }
 
 

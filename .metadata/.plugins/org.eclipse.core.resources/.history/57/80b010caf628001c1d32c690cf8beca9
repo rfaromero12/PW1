@@ -1,0 +1,211 @@
+package ejercicio1main;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import ejercicio1datos.Critica;
+import ejercicio1operaciones.GestorCriticas;
+
+
+public class Main {
+	
+	public static void main(String [] args) {
+		
+		GestorCriticas CManager = GestorCriticas.getInstance();
+		
+		CManager.load();
+		
+		Scanner read = new Scanner(System.in);
+		
+		int loged = 0;
+		
+		do {
+			
+			System.out.println("INICIAR SESIÓN / REGISTRARSE.");
+			System.out.println("1. Iniciar Sesión.\n2. Registrarse.");
+			int option = read.nextInt();
+			
+			if(option == 1) {
+				
+				System.out.println("Usuario:");
+				String user = read.next();
+				
+				System.out.println("Contraseña:");
+				String password = read.next(); //pasar a md5
+				
+				loged = CManager.login(user.toLowerCase(), password);
+				
+				if(loged == 0) {
+					
+					System.out.println("Usuario incorrecto.\n");
+				}
+				
+			}
+			else if(option == 2) {
+				
+				int avaiableUser;
+				
+				String username;
+				
+				do {
+					
+					System.out.println("Usuario:");
+					username = read.nextLine();
+					
+					avaiableUser = CManager.verifyUser(username.toLowerCase());
+					
+					if (avaiableUser == 0) {
+						
+						System.out.println("Este usuario no está disponible.");
+					}
+				} while(avaiableUser == 0);
+				
+				
+				int avaiableMail;
+				
+				String mail;
+				
+				do {
+					
+					System.out.println("Correo electrónico:");
+					mail = read.nextLine();
+					
+					avaiableMail = CManager.verifyMail(mail.toLowerCase());
+					
+					if (avaiableMail == 0) {
+						
+						System.out.println("Este correo electrónico no está disponible.");
+					}
+					
+				} while (avaiableMail == 0);
+				
+				System.out.println("Nombre y apellidos:");
+				String name = read.nextLine(); 				
+				System.out.println("Contraseña:");
+				String password = read.nextLine(); //pasar md5
+				
+				loged = CManager.crearUsuario(mail.toLowerCase(), name,username.toLowerCase(), password);
+				
+				System.out.println("Usuario creado correctamente.\n");
+				
+			}
+			else {
+				
+				System.out.println("Opción incorrecta.\n");
+			}
+			
+		} while (loged == 0);
+		
+		
+		if(loged == 1) {
+			
+			int exit = 0;
+			
+			do {
+			
+				System.out.println("\nMENU");
+				System.out.println("1. Crear crítica.");
+				System.out.println("2. Eliminar crítica.");
+				System.out.println("3. Ver críticas.");
+				System.out.println("4. Valorar crítica.");
+				System.out.println("5. Buscar críticas.");
+				System.out.println("6. Salir.");
+
+				int option = read.nextInt();
+				read.nextLine();
+				String titulo;
+				String username;
+				switch (option) {
+				
+				case 1 :
+					
+					System.out.println("CREAR CRÍTICA");
+					
+					System.out.println("Introduzca el titulo de la crítica");
+					titulo = read.nextLine();
+					
+					System.out.println("Introduzca la reseña de la crítica");
+					String resenia = read.nextLine();
+					
+					System.out.println("Introduzca su usuario");
+					username = read.nextLine();
+					
+					CManager.crearCritica(titulo, resenia, username.toLowerCase());
+				
+					break;
+				
+				case 2 :
+					
+					System.out.println("ELIMINAR CRÍTICA");
+					
+					System.out.println("Introduzca el titulo de la crítica");
+					titulo = read.nextLine();
+					System.out.println("Introduzca su usuario");
+					username = read.nextLine();
+					
+					CManager.borrarCritica(username.toLowerCase(), titulo);
+					
+					break;
+				
+				case 3 :
+					ArrayList<String> critica = new ArrayList<String>();
+					System.out.println("VER CRÍTICA");
+					critica = CManager.verCriticas();
+					for(int i = 0; i < critica.size(); i++) {
+						System.out.println(critica.get(i) + "");
+					}
+					break;
+					
+				case 4 :
+					
+					System.out.println("VALORAR CRÍTICA");
+					
+					System.out.println("Introduzca el titulo de la crítica");
+					titulo = read.nextLine();
+					System.out.println("Introduzca su usuario");
+					username = read.nextLine();
+					
+					System.out.println("Introduzca la puntuacion del espectaculo");
+					int valoracion = read.nextInt();
+					
+					CManager.votarCritica(titulo, username.toLowerCase(), valoracion);
+					read.nextLine();
+					break;
+				
+				case 5 :
+					ArrayList<Critica> buscador = new ArrayList<Critica>();
+					System.out.println("BUSCAR CRÍTICA");
+					
+					System.out.println("Introduzca el nombre del autor de la crítica");
+					
+					String nickcreador = read.nextLine();
+					buscador = CManager.buscarCriticas(nickcreador);
+					for(int i = 0; i < buscador.size(); i++) {
+						System.out.println(buscador.get(i) + "");
+					}
+					break;
+				case 6 :
+					
+					exit = 1;
+					
+					break;
+				
+				default :
+					
+					System.out.println("Opción incorrecta.");
+					
+					break;
+					
+				}
+				
+				
+			} while(exit == 0);
+		}
+			
+		read.close();	
+			
+		CManager.save();
+		
+	}
+	
+}
