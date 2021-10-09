@@ -307,7 +307,7 @@ public class GestorCriticas {
 			BufferedReader reader = new BufferedReader(new FileReader(new File(filename)));
 			prop.load(reader);
 			
-			String criticas = prop.getProperty("ficherocritica");
+			String criticas = prop.getProperty("ficherocriticas");
 			String usuarios = prop.getProperty("ficherousuarios");
 			aux.add(usuarios);
 			aux.add(criticas);

@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import ejercicio1datos.Critica;
 import ejercicio1datos.Usuario;
-import java.util.Properties;
+
 
 public class GestorCriticas {
 
@@ -192,12 +192,10 @@ public class GestorCriticas {
 	}
 	//Funciona
 	public void save() {
-		ArrayList<String> nombreficheros = new ArrayList<String>();
-		nombreficheros = ficheroProper();
-		
+	
 		try {
        
-			FileWriter usersFile = new FileWriter(nombreficheros.get(0));
+			FileWriter usersFile = new FileWriter("users.txt");
         
 			for (int i = 0; i < listaUsuarios.size(); i++) {
         	usersFile.write(listaUsuarios.get(i).getNick() + "\n");
@@ -214,7 +212,7 @@ public class GestorCriticas {
 
 		try {
 		       
-			FileWriter criticasFile = new FileWriter(nombreficheros.get(1));
+			FileWriter criticasFile = new FileWriter("criticas.txt");
 			ArrayList<Integer> aux = new ArrayList<Integer>();
 			for (int i = 0; i < listaCritica.size(); i++) {
         	criticasFile.write(listaCritica.get(i).getTitulo() + "\n");
@@ -235,14 +233,12 @@ public class GestorCriticas {
 	}
 	//Funciona
 	public void load() {
-		ArrayList<String> nombreficheros = new ArrayList<String>();
-		nombreficheros = ficheroProper();
 		
-		File usersFile = new File(nombreficheros.get(0));
+		File usersFile = new File("users.txt");
 		
 		if(usersFile.exists()) {
 			
-			try(BufferedReader br = new BufferedReader(new FileReader(nombreficheros.get(0)))) 
+			try(BufferedReader br = new BufferedReader(new FileReader("users.txt"))) 
 	        {
 	        	String username;
 	            while ((username = br.readLine()) != null) {
@@ -266,11 +262,11 @@ public class GestorCriticas {
 		}
 			
 		
-		File criticasFile = new File(nombreficheros.get(1));
+		File criticasFile = new File("criticas.txt");
 		
 		if(criticasFile.exists()) {
 			
-			try(BufferedReader br = new BufferedReader(new FileReader(nombreficheros.get(1)))) 
+			try(BufferedReader br = new BufferedReader(new FileReader("criticas.txt"))) 
 	        {
 	        	String titulo;
 	            while ((titulo = br.readLine()) != null) {
@@ -298,31 +294,7 @@ public class GestorCriticas {
 		
 	
 	}
-
-	public ArrayList<String> ficheroProper() {
-		Properties prop = new Properties();
-		ArrayList<String> aux = new ArrayList<String>();
-		String filename = "config.properties";
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(new File(filename)));
-			prop.load(reader);
-			
-			String criticas = prop.getProperty("ficherocritica");
-			String usuarios = prop.getProperty("ficherousuarios");
-			aux.add(usuarios);
-			aux.add(criticas);
-			
-		} catch (FileNotFoundException e) {
-			
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return aux;
-		
-	}
-	
 }
+
 
 
