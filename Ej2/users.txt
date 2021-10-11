@@ -1,0 +1,18 @@
+user
+user@gmail.com
+Francisco Ruiz Roldán
+pass
+1
+
+user2
+user2@gmail.com
+Blanca Aguilar Roldán
+pass
+0
+
+miguel
+miguelgilipollas
+Miguel me come la polla
+miguel
+1
+
